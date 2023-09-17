@@ -44,3 +44,11 @@ FROM departamento AS d;
 SELECT nome_funcionario FROM funcionario 
 WHERE sigla_depto = 'RH' AND 
 salario > (SELECT AVG(salario) FROM funcionario WHERE sigla_depto = 'RH');
+
+
+-- 7) Liste todos os departamentos e para cada departamento, liste os nomes dos funcionários separados por vírgula. (estude o operador GROUP_CONCAT).
+SELECT d.nome_depto, 
+       (SELECT GROUP_CONCAT(nome_funcionario SEPARATOR ', ')
+        FROM funcionario AS f
+        WHERE f.sigla_depto = d.sigla_depto) AS funcionarios_por_departamento
+FROM departamento AS d;
