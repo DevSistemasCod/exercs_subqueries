@@ -3,6 +3,7 @@ SELECT nome_funcionario FROM funcionario
 WHERE sigla_depto IN 
 (SELECT sigla_depto FROM departamento WHERE nome_depto LIKE 'Vendas');
 
+
 -- 2) Liste os nomes dos funcionários que estão trabalhando em projetos do departamento 'MKT' ou 'RH'.
 SELECT nome_funcionario, cargo, sigla_depto FROM funcionario 
 WHERE codigo_funcionario IN 
@@ -14,6 +15,7 @@ WHERE codigo_funcionario IN
 SELECT nome_depto,  (SELECT SUM(salario) FROM funcionario 
 WHERE funcionario.sigla_depto = departamento.sigla_depto) 
 AS total_salarios FROM departamento;
+
 -- v2
 SELECT d.nome_depto, (SELECT SUM(f.salario) FROM funcionario AS f 
 WHERE f.sigla_depto = d.sigla_depto) 
